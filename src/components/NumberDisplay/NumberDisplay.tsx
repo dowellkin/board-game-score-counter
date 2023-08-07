@@ -40,7 +40,7 @@ const NumberDisplay: React.FC<typeNumberDisplayProps> = ({
   }
 
   const onTouchEnd: React.TouchEventHandler<HTMLDivElement> = () => {
-    if (!touchStart || !touchEnd || offset < minSwipeDistance) return
+    if (!touchStart || !touchEnd || Math.abs(offset) < minSwipeDistance) return
     const newValue = -Math.round(offset / singleItemWidth)
     changeValue(newValue)
     setOffset(0)
