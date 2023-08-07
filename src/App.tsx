@@ -6,12 +6,22 @@ import CardList from "./components/CardList/CardList"
 import { useState } from "react"
 import { typeCard } from "./models/models"
 
+const LOCAL_STORE_CARDS = "lscds"
+
 function App() {
-  const [cards, setCards] = useState<typeCard[]>([])
+  const [cards, setCards] = useState<typeCard[]>(() => {
+    const rawData: string | null = localStorage.getItem(LOCAL_STORE_CARDS)
+    const data = JSON.parse(rawData ? rawData : "[]")
+    return data
+  })
+
+  const saveCards = (data: typeCard[]): void => {
+    localStorage.setItem(LOCAL_STORE_CARDS, JSON.stringify(data))
+  }
 
   const setCardValue = (index: number, value: number): void => {
     setCards((prev) => {
-      return prev.map((card, ind) => {
+      const newData: typeCard[] = prev.map((card, ind) => {
         if (ind === index) {
           return {
             ...card,
@@ -21,12 +31,17 @@ function App() {
 
         return card
       })
+
+      saveCards(newData)
+      return newData
     })
   }
 
   const createCard = (cardInfo: typeCard) => {
     setCards((prev) => {
-      return [...prev, cardInfo]
+      const newData = [...prev, cardInfo]
+      saveCards(newData)
+      return newData
     })
   }
 
