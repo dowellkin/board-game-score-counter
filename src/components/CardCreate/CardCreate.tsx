@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import plusIcon from "@assets/icons/icon-plus.svg"
 import { randomNum } from "@/utils/index"
 
