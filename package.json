@@ -14,10 +14,12 @@
     "autoprefixer": "^9.8.6",
     "postcss-cli": "^10.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tsc": "^2.0.4"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
+    "@types/node": "^20.4.8",
+    "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
