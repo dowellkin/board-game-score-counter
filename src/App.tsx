@@ -1,10 +1,11 @@
 import "./App.css"
 import Container from "./components/Container/Container"
 import Header from "./components/Header/Header"
-import Icon from "./components/Icon/Icon"
 import CardList from "./components/CardList/CardList"
 import { useState } from "react"
 import { typeCard } from "./models/models"
+import ControlMenu from "./components/ControlMenu/ControlMenu"
+import { StateContext } from "./components/StateContext/StateContext"
 
 const LOCAL_STORE_CARDS = "lscds"
 
@@ -45,20 +46,38 @@ function App() {
     })
   }
 
+  const clearCard = () => {
+    setCards([])
+  }
+
+  const removeSomeItems = (ids: number[]) => {
+    setCards((prev) => {
+      return prev.filter((prevCard) => {
+        return !ids.includes(prevCard.id)
+      })
+    })
+  }
+
   return (
     <>
-      <Header></Header>
-      <Container>
-        <Icon></Icon>
-      </Container>
+      <StateContext>
+        <main className="pb-20">
+          <Header />
 
-      <Container>
-        <CardList
-          cards={cards}
-          setCardValue={setCardValue}
-          createCard={createCard}
-        />
-      </Container>
+          <Container>
+            <CardList
+              cards={cards}
+              setCardValue={setCardValue}
+              createCard={createCard}
+            />
+          </Container>
+
+          <ControlMenu
+            clearCard={clearCard}
+            removeSomeItems={removeSomeItems}
+          />
+        </main>
+      </StateContext>
     </>
   )
 }

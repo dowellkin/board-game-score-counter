@@ -18,7 +18,7 @@ const CardList: React.FC<typeCardListProps> = ({
       {cards.map((card: typeCard, index: number) => (
         <Card
           card={card}
-          key={card.title}
+          key={card.id}
           index={index}
           setCardValue={setCardValue}
         ></Card>

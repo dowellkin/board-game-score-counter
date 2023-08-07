@@ -33,6 +33,7 @@ const CardCreate: React.FC<typeCardCreateProps> = ({ createCard }) => {
       icon: String(randomNum(1, 121)).padStart(3, "0"),
       title: name,
       value: 0,
+      id: new Date().getTime(),
     })
 
     setName("")
